@@ -286,9 +286,9 @@ def get_snipe_time(channel,rolled,message):
 
 def next_claim(channel):
     channel = int(channel)
-    offset = (120-(channel_settings[channel]['shift']+channel_settings[channel]['reset_min']))*60
+    offset = (120-(channel_settings[channel]['shift']+channel_settings[channel]['reset_min']))*1
     
-    reset_period = channel_settings[channel]['claim_reset']*60
+    reset_period = channel_settings[channel]['claim_reset']*1
     t = time.time()+offset
     last_reset = (t%86400)%reset_period
     reset_at = reset_period-last_reset+time.time()
@@ -298,9 +298,9 @@ def next_claim(channel):
 def next_reset(channel):
     # Returns timestamp of next reset
     channel = int(channel)
-    offset = channel_settings[channel]['reset_min']*60
+    offset = channel_settings[channel]['reset_min']*1
     t = time.time()
-    return t+(3600-((t-offset)%3600))
+    return t+(60-((t-offset)%60))
 
 def poke_roll(tide):
     logger.debug(f"Pokemon Rolling Started in channel {tide}. (If you would like this in a different channel, please configure the desired channel ID as the first in your list)")
